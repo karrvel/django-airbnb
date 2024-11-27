@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from apartments.views import HelloWorld
+from django.conf.urls.static import static
+from config.settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    path('hello_world', HelloWorld.as_view())
-]
+    path('', include('apartments.urls'))
+] + static(MEDIA_URL, document_root=MEDIA_ROOT)
