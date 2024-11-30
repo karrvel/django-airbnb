@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <form action="/submit/"> -->
+    <form method="post">
+        {% csrf_token %}
+        <!-- <label name="name">Name</label>
+        <input id="name" name="name" type="text">
+        <br>
+
+        <label name="email">Email</label>
+        <input id="email" name="email" type="email">
+        <br>
+
+        <label name="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+        <br> -->
+
+        {{ ismoil }}
+        <!-- {{ ismoil.as_p }} -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

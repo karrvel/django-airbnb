@@ -14,5 +14,6 @@ class Apartment(models.Model):
     address = models.CharField(max_length=200)
     owner = models.ForeignKey('users.Users', on_delete=models.RESTRICT)
     desciprtion = models.TextField()
+    likes = models.IntegerField()
     image = models.ImageField()
     status = models.CharField(max_length=1, choices=StatusChoices, default=StatusChoices.REVIEW)

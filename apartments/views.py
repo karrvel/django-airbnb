@@ -6,6 +6,31 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 from apartments.models import Apartment
+from apartments.forms import FeedbackForm, ApartmentForm
+
+# def submit(request):
+#     # print(request.GET.get('name'))
+#     # print(request.GET.get('email'))
+#     # return HttpResponse(request.GET.get('name'))
+
+#     form = FeedbackForm(request)
+#     print(dict(form))
+#     return HttpResponse(form)
+
+
+
+def feedback(request):
+    if request.method == "POST":
+        # form = FeedbackForm(request.POST)
+        form = ApartmentForm(request.POST)
+        print(form)
+        print(dict(form.cleaned_data))
+        return HttpResponse("Submitted!")
+
+    if request.method == "GET":
+        # form = FeedbackForm()
+        form = ApartmentForm()
+        return render(request, 'feedback.html', {'ismoil': form})
 
 
 @csrf_exempt
