@@ -9,7 +9,7 @@
     <h1>Hello {{ user.is_authenticated }}</h1>
 
     {% for x in apartments %}
-        <p>{{x.id}} - {{x.name}}</p>
+        <p>{{x.id}} - {{x.name}}: ${{ x.daily_price }}</p>
         <img src="{{ x.image.url }}" width="500">
     {% endfor %}
 </body>

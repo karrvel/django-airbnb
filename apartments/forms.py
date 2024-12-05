@@ -10,6 +10,19 @@ class FeedbackForm(forms.Form):
 class ApartmentForm(forms.ModelForm):
     class Meta:
         model = Apartment
-        # fields = '__all__'
-        exclude = ('id', 'owner')
+        fields = '__all__'
+        exclude = ('image', )
         # fields = ('id', 'name', 'longitude', 'likes')
+
+
+    # custom field validation
+    def clean_daily_price(self):
+        daily_price = self.cleaned_data['daily_price']
+
+        if daily_price == 0 or daily_price > 1000:
+            raise forms.ValidationError("Daily price can not be zero or greater than $1000")
+        
+        return daily_price
+
+
+    

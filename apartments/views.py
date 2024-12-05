@@ -23,8 +23,20 @@ def feedback(request):
     if request.method == "POST":
         # form = FeedbackForm(request.POST)
         form = ApartmentForm(request.POST)
-        print(form)
-        print(dict(form.cleaned_data))
+        # print(form)
+        # print(dict(form.cleaned_data))
+
+        if form.is_valid():
+            print(form)
+            print(form.cleaned_data)
+            apartment = form.save(commit=False)
+            apartment.save()
+            print(apartment)
+        else:
+            print(form.errors)
+            return HttpResponse(f"{form.errors}")
+
+
         return HttpResponse("Submitted!")
 
     if request.method == "GET":
@@ -34,12 +46,15 @@ def feedback(request):
 
 
 @csrf_exempt
-def hello_world(request: HttpRequest, user_id) -> HttpResponse:
+# def hello_world(request: HttpRequest, user_id) -> HttpResponse:
+def hello_world(request: HttpRequest) -> HttpResponse:
     if request.method == "GET":
         # return HttpResponse(f"<h1>hello {username}</h1>")
 
-        apartments = Apartment.objects.filter(owner__id=user_id)
-        
+        # exact, iexact, icontains, lt, lte, gt, gte, range
+        # apartments = Apartment.objects.filter(daily_price__range=(6, 100))
+        # apartments = Apartment.objects.exclude(daily_price__lt=5)
+        apartments = Apartment.objects.all().order_by('daily_price', '-name')
         print(apartments)
 
         context = {
